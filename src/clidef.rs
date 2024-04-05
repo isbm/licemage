@@ -11,6 +11,13 @@ pub fn cli(version: &'static str) -> Command {
             "WARNING: package metadata might be inaccurate!\n".bright_yellow()
         )))
         .arg(
+            Arg::new("known-only")
+                .short('s')
+                .long("known-only")
+                .action(clap::ArgAction::SetTrue)
+                .help("Suppress unknown licences"),
+        )
+        .arg(
             Arg::new("examine")
                 .short('e')
                 .long("examine")
