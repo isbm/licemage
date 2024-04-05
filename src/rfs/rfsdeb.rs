@@ -1,3 +1,5 @@
+use crate::licences::PkgLicence;
+
 use super::rfsitf::RootFSItf;
 use std::{
     fs::File,
@@ -45,5 +47,10 @@ impl RootFSItf for DebRootFsScan {
         }
 
         out
+    }
+
+    /// Get license(s) of a package
+    fn get_pkg_license(&self, pkgname: String) -> PkgLicence {
+        todo!()
     }
 }

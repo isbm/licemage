@@ -1,4 +1,5 @@
 mod clidef;
+mod licences;
 mod pkgcache;
 mod rfs;
 
