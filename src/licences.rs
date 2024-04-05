@@ -7,6 +7,7 @@ pub struct PkgLicence {
     other: Vec<String>,
 }
 
+#[allow(dead_code)]
 impl PkgLicence {
     /// Create new instance of PkgLicence object
     pub fn new(id: String) -> Self {
@@ -29,6 +30,9 @@ impl PkgLicence {
     }
 
     pub fn add(&mut self, other: String) {
-        self.other.push(other);
+        let other = other.trim();
+        if other != self.id && !other.is_empty() {
+            self.other.push(other.to_string());
+        }
     }
 }
