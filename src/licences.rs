@@ -15,6 +15,7 @@ impl PkgLicence {
         &self.id
     }
 
+    /// Returns true if there are other licences then just the main ID
     /// Returns other licenses, if any
     pub fn get_other(&self) -> Option<&Vec<String>> {
         self.other.as_ref()

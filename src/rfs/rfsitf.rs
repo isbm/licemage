@@ -5,5 +5,6 @@ pub trait RootFSItf {
     /// It will basically read the corresponding package database.
     fn get_pkg_list(&self) -> Vec<String>;
 
+    /// Get package license
     fn get_pkg_license(&self, pkgname: String) -> PkgLicence;
 }
