@@ -252,6 +252,7 @@ dependencies = [
  "colored",
  "lazy_static",
  "phf",
+ "regex",
  "rs-release",
 ]
 
