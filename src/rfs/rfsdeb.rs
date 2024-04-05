@@ -34,11 +34,9 @@ impl RootFSItf for DebRootFsScan {
 
         if let Ok(f) = File::open(self.rootfs.as_os_str()) {
             let r = BufReader::new(f);
-            for l in r.lines() {
-                if let Ok(c) = l {
-                    if c.starts_with(PKG_MARKER) {
-                        out.push(c.replace(PKG_MARKER, "").trim().to_string());
-                    }
+            for l in r.lines().flatten() {
+                if l.starts_with(PKG_MARKER) {
+                    out.push(l.replace(PKG_MARKER, "").trim().to_string());
                 }
             }
         }
@@ -48,6 +46,6 @@ impl RootFSItf for DebRootFsScan {
 
     /// Get license(s) of a package
     fn get_pkg_license(&self, pkgname: String) -> PkgLicence {
-        todo!()
+        PkgLicenceItf::into(DebPkgLicense::new(pkgname))
     }
 }
