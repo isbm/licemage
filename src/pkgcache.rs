@@ -11,9 +11,7 @@ pub struct PackageCache {
 #[allow(dead_code)]
 impl PackageCache {
     pub fn new() -> Self {
-        PackageCache {
-            cache: Box::new(DebPackageCache::new()),
-        }
+        PackageCache { cache: Box::new(DebPackageCache::new()) }
     }
 
     pub fn get_source(&self) {}
