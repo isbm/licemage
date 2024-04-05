@@ -35,4 +35,7 @@ impl RfsScan {
     }
 
     /// Get claimed licence for a particular package on the root filesystem
+    pub fn get_pkg_license(&self, pkgname: String) -> PkgLicence {
+        self.pkgscan.get_pkg_license(pkgname)
+    }
 }
