@@ -2,9 +2,9 @@ use clap::{Arg, Command};
 use colored::Colorize;
 
 pub fn cli(version: &'static str) -> Command {
-    Command::new("complicenz")
+    Command::new("licemage")
         .version(version)
-        .about("Image License Scanner")
+        .about("licemage - image license scanner")
         .arg(
             Arg::new("path")
                 .short('p')

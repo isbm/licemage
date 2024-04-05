@@ -1,5 +1,5 @@
 [package]
-name = "complicenz"
+name = "licemage"
 version = "0.1.0"
 edition = "2021"
 
@@ -10,3 +10,10 @@ colored = "2.1.0"
 lazy_static = { version = "1.4.0", features = ["spin"] }
 phf = { version = "0.11.2", features = ["macros"] }
 rs-release = "0.1.9"
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
