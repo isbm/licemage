@@ -6,6 +6,7 @@ mod rfs;
 #[allow(unused_imports)]
 use askalono::TextData;
 use clap::Error;
+use colored::Colorize;
 use rfs::RfsScan;
 
 #[allow(unused_imports)]
@@ -31,7 +32,7 @@ fn main() -> Result<(), Error> {
     let params = cli.to_owned().get_matches();
     let mut rootfs = params.get_one::<String>("path").unwrap().to_owned(); // Won't be an Option, required.
 
-    if !fs::metadata(&rootfs).is_ok() {
+    if fs::metadata(&rootfs).is_err() {
         return {
             println!("Path {} does not exist", rootfs);
             Ok(())
@@ -43,9 +44,26 @@ fn main() -> Result<(), Error> {
         rootfs = "".to_string();
     }
 
-    let mut x = RfsScan::new(PathBuf::from_str(&rootfs).unwrap())?;
-    for p in x.get_pkg_list() {
-        println!("{}", p);
+    // Display claimed licences
+    if params.get_flag("claimed") {
+        println!("Package                        | Licence                             | Other...");
+        println!("-------------------------------+-------------------------------------+---------------");
+        let rfs = RfsScan::new(PathBuf::from_str(&rootfs).unwrap())?;
+        for mut p in rfs.get_pkg_list() {
+            let pkl = rfs.get_pkg_license(p.to_owned());
+            let primary = pkl.get_id();
+            if p.len() > 30 {
+                p = p[..30].to_string();
+            }
+            if params.get_flag("known-only") && !primary.is_empty() || !params.get_flag("known-only") {
+                println!(
+                    "{:<30} | {:<35} | {}",
+                    p.bright_white(),
+                    if primary.is_empty() { "Unknown".bright_red() } else { primary.bright_cyan() },
+                    pkl.get_other().join(", ").cyan()
+                );
+            }
+        }
     }
 
     /*
