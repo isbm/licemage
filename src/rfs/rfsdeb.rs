@@ -20,10 +20,7 @@ impl DebRootFsScan {
         p = p.join(DPKG_DBF);
 
         if !p.exists() {
-            return Err(Error::new(
-                ErrorKind::NotFound,
-                format!("{:?} not found", p.as_os_str()),
-            ));
+            return Err(Error::new(ErrorKind::NotFound, format!("{:?} not found", p.as_os_str())));
         }
 
         Ok(DebRootFsScan { rootfs: p })
