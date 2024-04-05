@@ -3,9 +3,12 @@ mod licences;
 mod pkgcache;
 mod rfs;
 
+#[allow(unused_imports)]
 use askalono::TextData;
 use clap::Error;
 use rfs::RfsScan;
+
+#[allow(unused_imports)]
 use std::{
     env, fs,
     path::{Path, PathBuf},
@@ -14,7 +17,7 @@ use std::{
 };
 
 static VERSION: &str = "0.1";
-
+#[allow(dead_code)]
 fn main() -> Result<(), Error> {
     let args: Vec<String> = env::args().collect();
     let mut cli = clidef::cli(VERSION);
