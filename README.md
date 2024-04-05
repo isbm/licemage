@@ -1,4 +1,4 @@
-# Licemage — Image Licence Scanner.
+# Licemage — Image Licence Scanner
 
 Image licence scanner is another addition to SBOM process.
 
