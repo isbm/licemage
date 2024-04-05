@@ -3,10 +3,7 @@
 */
 
 use phf::phf_map;
-use std::{
-    fs,
-    path::{Path, PathBuf},
-};
+use std::{fs, path::PathBuf};
 
 pub static PKG_MGR_DEB: &'static str = "dpkg";
 pub static PKG_MGR_RPM: &'static str = "rpm";
@@ -40,11 +37,7 @@ pub struct RfsType {
 impl RfsType {
     /// Create an instance of the RfsType
     pub fn new(p: PathBuf) -> Self {
-        RfsType {
-            rfs_path: p.join("/etc/os-release"),
-            rfs_os_id: "".to_string(),
-        }
-        .parse_osrls()
+        RfsType { rfs_path: p.join("/etc/os-release"), rfs_os_id: "".to_string() }.parse_osrls()
     }
 
     /// Parse os-release, which is at $rfs_path/etc/os-release

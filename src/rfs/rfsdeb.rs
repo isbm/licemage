@@ -1,4 +1,4 @@
-use crate::licences::PkgLicence;
+use crate::licences::{cpritf::PkgLicenceItf, debcpr::DebPkgLicense, PkgLicence};
 
 use super::rfsitf::RootFSItf;
 use std::{
