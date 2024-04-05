@@ -1,6 +1,5 @@
-use crate::rfs::rfsrpm::RpmRootFsScan;
-
 use self::{rfsdeb::DebRootFsScan, rfsitf::RootFSItf, rfstype::RfsType};
+use crate::{licences::PkgLicence, rfs::rfsrpm::RpmRootFsScan};
 use std::{io::Error, path::PathBuf};
 
 mod rfsdeb;
