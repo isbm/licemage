@@ -1,13 +1,16 @@
+pub mod cpritf;
+pub mod debcpr;
+
 /// Package License object, containing main license ID and possibly additional.
 pub struct PkgLicence {
     id: String,
-    other: Option<Vec<String>>,
+    other: Vec<String>,
 }
 
 impl PkgLicence {
     /// Create new instance of PkgLicence object
     pub fn new(id: String) -> Self {
-        PkgLicence { id, other: None }
+        PkgLicence { id, other: Vec::default() }
     }
 
     /// Returns the ID of the main license
@@ -16,23 +19,16 @@ impl PkgLicence {
     }
 
     /// Returns true if there are other licences then just the main ID
+    pub fn has_other(&self) -> bool {
+        return !self.get_other().is_empty();
+    }
+
     /// Returns other licenses, if any
-    pub fn get_other(&self) -> Option<&Vec<String>> {
+    pub fn get_other(&self) -> &Vec<String> {
         self.other.as_ref()
     }
 
     pub fn add(&mut self, other: String) {
-        if self.other.is_none() {
-            self.other = Some(Vec::default());
-        }
-
-        self.other = self
-            .other
-            .as_mut()
-            .map(|mut v| {
-                v.push(other);
-                v
-            })
-            .cloned();
+        self.other.push(other);
     }
 }
