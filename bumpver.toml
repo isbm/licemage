@@ -1,6 +1,6 @@
 [bumpver]
 current_version = "0.1"
-version_pattern = "MAJOR.MINOR"
+version_pattern = "MAJOR.MINOR[.PATCH[PYTAGNUM]]"
 commit_message = "Update version from {old_version} to {new_version}"
 tag_message = "{new_version}"
 tag_scope = "default"
@@ -15,3 +15,6 @@ push = true
     'current_version = "{version}"',
 ]
 
+"src/main.rs" = [
+    'static VERSION: &str = "{version}";',
+]
