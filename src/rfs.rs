@@ -19,13 +19,9 @@ impl RfsScan {
     /// Create root filesystem scanner
     pub fn new(p: PathBuf) -> Result<Self, Error> {
         if RfsType::new(p.clone()).get_pkg_mgr() == rfstype::PKG_MGR_DEB {
-            return Ok(RfsScan {
-                pkgscan: Box::new(DebRootFsScan::new(p)?),
-            });
+            Ok(RfsScan { pkgscan: Box::new(DebRootFsScan::new(p)?) })
         } else {
-            return Ok(RfsScan {
-                pkgscan: Box::new(RpmRootFsScan {}),
-            });
+            Ok(RfsScan { pkgscan: Box::new(RpmRootFsScan {}) })
         }
     }
 
