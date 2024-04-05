@@ -7,8 +7,8 @@ use std::{
     path::PathBuf,
 };
 
-static DPKG_DBF: &'static str = "/var/lib/dpkg/status";
-static PKG_MARKER: &'static str = "Package:";
+static DPKG_DBF: &str = "/var/lib/dpkg/status";
+static PKG_MARKER: &str = "Package:";
 
 pub struct DebRootFsScan {
     rootfs: PathBuf,

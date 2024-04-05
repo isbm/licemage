@@ -5,9 +5,9 @@
 use phf::phf_map;
 use std::{fs, path::PathBuf};
 
-pub static PKG_MGR_DEB: &'static str = "dpkg";
-pub static PKG_MGR_RPM: &'static str = "rpm";
-static PACKAGE_MANAGERS: phf::Map<&'static str, &'static str> = phf_map! {
+pub static PKG_MGR_DEB: &str = "dpkg";
+pub static PKG_MGR_RPM: &str = "rpm";
+static PACKAGE_MANAGERS: phf::Map<&str, &str> = phf_map! {
     // Debian family
     "debian" => PKG_MGR_DEB,
     "raspbian" => PKG_MGR_DEB,
@@ -55,7 +55,7 @@ impl RfsType {
             }
         }
 
-        return self;
+        self
     }
 
     /// Gets ID of the distribution
