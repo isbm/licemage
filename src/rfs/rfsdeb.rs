@@ -34,7 +34,7 @@ impl RootFSItf for DebRootFsScan {
 
         if let Ok(f) = File::open(self.rootfs.as_os_str()) {
             let r = BufReader::new(f);
-            for l in r.lines().flatten() {
+            for l in r.lines().map_while(Result::ok) {
                 if l.starts_with(PKG_MARKER) {
                     out.push(l.replace(PKG_MARKER, "").trim().to_string());
                 }
