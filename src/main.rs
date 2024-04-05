@@ -17,7 +17,7 @@ use std::{
     str::FromStr,
 };
 
-static VERSION: &str = "0.1";
+static VERSION: &str = "0.2";
 #[allow(dead_code)]
 fn main() -> Result<(), Error> {
     let args: Vec<String> = env::args().collect();
