@@ -35,7 +35,7 @@ pub struct RfsType {
 }
 
 impl RfsType {
-    #[allow(clippy::absolute_paths)]
+    #[allow(clippy::join_absolute_paths)]
     /// Create an instance of the RfsType
     pub fn new(p: PathBuf) -> Self {
         RfsType { rfs_path: p.join("/etc/os-release"), rfs_os_id: "".to_string() }.parse_osrls()
