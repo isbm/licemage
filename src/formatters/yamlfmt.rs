@@ -7,8 +7,6 @@ pub struct YAMLDataFormatter<'a> {
     skip_unknown: bool,
 }
 
-impl YAMLDataFormatter<'_> {}
-
 impl<'a> DataFormatter<'a> for YAMLDataFormatter<'_> {
     fn format(&self) -> String {
         let mut out = String::new();

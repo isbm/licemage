@@ -8,8 +8,6 @@ pub struct TextDataFormatter<'a> {
     skip_unknown: bool,
 }
 
-impl<'a> TextDataFormatter<'a> {}
-
 impl<'a> DataFormatter<'a> for TextDataFormatter<'a> {
     fn format(&self) -> String {
         let mut out = String::from("Package                        | Licences\n-------------------------------+---------\n");
