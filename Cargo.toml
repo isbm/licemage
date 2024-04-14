@@ -1,14 +1,14 @@
 [package]
 name = "licemage"
-version = "0.2"
+version = "0.3"
 edition = "2021"
 
 [dependencies]
-askalono = { version = "0.4.6", features = ["gzip", "flate2"] }
-clap = { version = "4.5.4", features = ["unicode"] }
+askalono = { version = "0.3", features = ["gzip", "flate2"] }
+clap = { version = "0.3", features = ["unicode"] }
 colored = "2.1.0"
-lazy_static = { version = "1.4.0", features = ["spin"] }
-phf = { version = "0.11.2", features = ["macros"] }
+lazy_static = { version = "0.3", features = ["spin"] }
+phf = { version = "0.3", features = ["macros"] }
 regex = "1.10.4"
 rs-release = "0.1.9"
 
