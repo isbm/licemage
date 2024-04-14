@@ -25,7 +25,7 @@ use std::{
 
 use crate::formatters::stdfmt;
 
-static VERSION: &str = "0.3.0";
+static VERSION: &str = "0.3.1";
 
 /// Formatter to STDOUT
 fn display_licences(rfs: &RfsScan, typ: FormatterType, skip_unknown: bool) -> String {
