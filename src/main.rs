@@ -29,14 +29,12 @@ static VERSION: &str = "0.2";
 
 /// Formatter to STDOUT
 fn display_licences(rfs: &RfsScan, typ: FormatterType) -> String {
-    let f: Box<dyn DataFormatter>;
     match typ {
-        FormatterType::YAML => f = YAMLDataFormatter::new(rfs),
-        FormatterType::CSV => f = CSVDataFormatter::new(rfs),
-        FormatterType::TEXT => f = TextDataFormatter::new(rfs),
+        FormatterType::Yaml => YAMLDataFormatter::new(rfs),
+        FormatterType::Csv => CSVDataFormatter::new(rfs),
+        FormatterType::Text => TextDataFormatter::new(rfs),
     }
-
-    f.format()
+    .format()
 }
 
 #[allow(dead_code)]

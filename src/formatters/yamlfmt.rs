@@ -27,7 +27,7 @@ impl<'a> DataFormatter<'a> for YAMLDataFormatter<'_> {
             }
         }
 
-        out.push_str("\n");
+        out.push('\n');
         out
     }
 

@@ -1,6 +1,5 @@
 use super::stdfmt::DataFormatter;
 use crate::rfs::RfsScan;
-use std::io::{self, BufWriter};
 
 pub struct CSVDataFormatter<'a> {
     rfs: &'a RfsScan,
@@ -13,7 +12,7 @@ impl<'a> CSVDataFormatter<'a> {
         }
 
         let mut out = String::new();
-        for mut e in data {
+        for e in data {
             if e.is_empty() {
                 continue;
             }
@@ -42,7 +41,7 @@ impl<'a> DataFormatter<'a> for CSVDataFormatter<'_> {
             if !otr.is_empty() {
                 out.push_str(&otr);
             }
-            out.push_str("\n");
+            out.push('\n');
         }
 
         out
