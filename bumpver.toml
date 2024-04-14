@@ -1,6 +1,7 @@
 [bumpver]
-current_version = "0.3"
-version_pattern = "MAJOR.MINOR[.PATCH[PYTAGNUM]]"
+current_version = "0.3.0"
+# version_pattern = "MAJOR.MINOR[.PATCH[PYTAGNUM]]"
+version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Update version from {old_version} to {new_version}"
 tag_message = "{new_version}"
 tag_scope = "default"
@@ -20,5 +21,5 @@ push = true
 ]
 
 "Cargo.toml" = [
-    'version = "{version}"',
+    '^version = "{version}"',
 ]
