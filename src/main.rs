@@ -7,7 +7,11 @@ mod rfs;
 #[allow(unused_imports)]
 use askalono::TextData;
 use clap::Error;
-use colored::Colorize;
+use formatters::{
+    csvfmt::CSVDataFormatter,
+    stdfmt::{DataFormatter, FormatterType},
+    txtfmt::TextDataFormatter,
+};
 use rfs::RfsScan;
 
 #[allow(unused_imports)]
@@ -18,7 +22,21 @@ use std::{
     str::FromStr,
 };
 
+use crate::formatters::stdfmt;
+
 static VERSION: &str = "0.2";
+
+/// Formatter to STDOUT
+fn display_licences(rfs: &RfsScan, typ: FormatterType) -> String {
+    let f: Box<dyn DataFormatter>;
+    match typ {
+        FormatterType::CSV => f = CSVDataFormatter::new(rfs),
+        FormatterType::TEXT => f = TextDataFormatter::new(rfs),
+    }
+
+    f.format()
+}
+
 #[allow(dead_code)]
 fn main() -> Result<(), Error> {
     let args: Vec<String> = env::args().collect();
@@ -47,24 +65,11 @@ fn main() -> Result<(), Error> {
 
     // Display claimed licences
     if params.get_flag("claimed") {
-        println!("Package                        | Licence                             | Other...");
-        println!("-------------------------------+-------------------------------------+---------------");
         let rfs = RfsScan::new(PathBuf::from_str(&rootfs).unwrap())?;
-        for mut p in rfs.get_pkg_list() {
-            let pkl = rfs.get_pkg_license(p.to_owned());
-            let primary = pkl.get_id();
-            if p.len() > 30 {
-                p = p[..30].to_string();
-            }
+        print!("{}", display_licences(&rfs, stdfmt::get_fmt_choice(params.get_one::<String>("format").unwrap().to_owned())));
+        /*
             if params.get_flag("known-only") && !primary.is_empty() || !params.get_flag("known-only") {
-                println!(
-                    "{:<30} | {:<35} | {}",
-                    p.bright_white(),
-                    if primary.is_empty() { "Unknown".bright_red() } else { primary.bright_cyan() },
-                    pkl.get_other().join(", ").cyan()
-                );
-            }
-        }
+        */
     }
 
     /*
