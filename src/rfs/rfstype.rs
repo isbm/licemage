@@ -35,6 +35,7 @@ pub struct RfsType {
 }
 
 impl RfsType {
+    #[allow(unknown_lints)]
     #[allow(clippy::join_absolute_paths)]
     /// Create an instance of the RfsType
     pub fn new(p: PathBuf) -> Self {
