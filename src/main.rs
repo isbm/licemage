@@ -11,6 +11,7 @@ use formatters::{
     csvfmt::CSVDataFormatter,
     stdfmt::{DataFormatter, FormatterType},
     txtfmt::TextDataFormatter,
+    yamlfmt::YAMLDataFormatter,
 };
 use rfs::RfsScan;
 
@@ -30,6 +31,7 @@ static VERSION: &str = "0.2";
 fn display_licences(rfs: &RfsScan, typ: FormatterType) -> String {
     let f: Box<dyn DataFormatter>;
     match typ {
+        FormatterType::YAML => f = YAMLDataFormatter::new(rfs),
         FormatterType::CSV => f = CSVDataFormatter::new(rfs),
         FormatterType::TEXT => f = TextDataFormatter::new(rfs),
     }
