@@ -25,7 +25,7 @@ pub fn get_fmt_choices() -> [&'static str; 3] {
 /// DataFormatter is an interface to the formatters
 pub trait DataFormatter<'a> {
     #[allow(clippy::new_ret_no_self)]
-    fn new(rfs: &'a RfsScan) -> Box<dyn DataFormatter + 'a>
+    fn new(rfs: &'a RfsScan, skip_unknown: bool) -> Box<dyn DataFormatter + 'a>
     where
         Self: Sized;
 

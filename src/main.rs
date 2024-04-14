@@ -28,11 +28,11 @@ use crate::formatters::stdfmt;
 static VERSION: &str = "0.2";
 
 /// Formatter to STDOUT
-fn display_licences(rfs: &RfsScan, typ: FormatterType) -> String {
+fn display_licences(rfs: &RfsScan, typ: FormatterType, skip_unknown: bool) -> String {
     match typ {
-        FormatterType::Yaml => YAMLDataFormatter::new(rfs),
-        FormatterType::Csv => CSVDataFormatter::new(rfs),
-        FormatterType::Text => TextDataFormatter::new(rfs),
+        FormatterType::Yaml => YAMLDataFormatter::new(rfs, skip_unknown),
+        FormatterType::Csv => CSVDataFormatter::new(rfs, skip_unknown),
+        FormatterType::Text => TextDataFormatter::new(rfs, skip_unknown),
     }
     .format()
 }
@@ -66,10 +66,14 @@ fn main() -> Result<(), Error> {
     // Display claimed licences
     if params.get_flag("claimed") {
         let rfs = RfsScan::new(PathBuf::from_str(&rootfs).unwrap())?;
-        print!("{}", display_licences(&rfs, stdfmt::get_fmt_choice(params.get_one::<String>("format").unwrap().to_owned())));
-        /*
-            if params.get_flag("known-only") && !primary.is_empty() || !params.get_flag("known-only") {
-        */
+        print!(
+            "{}",
+            display_licences(
+                &rfs,
+                stdfmt::get_fmt_choice(params.get_one::<String>("format").unwrap().to_owned()),
+                params.get_flag("known-only")
+            )
+        );
     }
 
     /*
