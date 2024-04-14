@@ -18,3 +18,7 @@ push = true
 "src/main.rs" = [
     'static VERSION: &str = "{version}";',
 ]
+
+"Cargo.toml" = [
+    'version = "{version}"',
+]
